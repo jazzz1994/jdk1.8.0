@@ -1,0 +1,3 @@
+Emp [id=1, name=abc1, dept=rnd, salary=11000.0]
+Emp [id=2, name=abc2, dept=rnd, salary=12000.0]
+Emp [id=3, name=abc3, dept=rnd, salary=13000.0]

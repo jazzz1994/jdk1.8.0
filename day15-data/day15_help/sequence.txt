@@ -1,0 +1,102 @@
+Revise
+Hashing algorithm
+HM<String,Customer> hs=new HM<>();
+hm.put(k1,c1);//id =3
+hm.put(k2,c2);//id=10
+hm.put(k3,c3);//id =10
+hm.put(k4,c4);//id=10
+------------------------
+c3=hm.get(k3)
+Load Factor --- .75
+size > L.F * capa ---rehashing 
+Load Factor 
+Java 8 enhancements in HashMap
+
+TreeSet Constrs.
+TreeSet()
+TreeSet(Collection<? extends E> c)
+TreeSet(Comparator<? super E> comp)
+
+Enter Threads
+Thread related API
+
+1. Starting point of multi threading API
+java.lang.Runnable i/f --@FunctionalInterface
+Method
+public void run()
+
+2. java.lang.Thread -- class which imple Runnable i/f
+Has implemented run() in blank form(do nothing)
+
+3. Thread class constrs.
+Comstrs used in "extends Thread" scenario
+3.1 Thread() --creates un named thrd (name will be supplied by JVM)
+3.2 Thread(String name) --creates named thrd.
+
+Constrs to be used in "implements Runnable" scenario
+3.3 Thread(Runnable inst)
+3.4 Thread(Runnable inst,String name)
+
+Thread class methods
+1. public void start() -- transitions NEW thread -----> RUNNABLE state. (Ready to run pool)
+
+2. public static void yield() --- Requests/hints native scheduler to transtion running----> rdy pool (typically to avoid lower prio thrds' starvation) 
+---UN RELIABLE ---will not be used in real life egs.
+
+3. public static void sleep(long ms) throws InterruptedException ---BLOCKING API(causes invoker thrd to block)
+eg : Thread.sleep(100)
+
+4.public void interrupt() 
+5. public static Thread currentThread() --rets the ref of invoker thrd.
+6. public String toString() --rets string [nm,prio,thrd_grp_name]
+7. public void setName(String name) 
+public String getName()
+8. public void setPriority(int prio)
+Java Priority scale ---1   --- 10
+3 Thread class consts --MIN_PRIORITY(1) , MAX_PRIO(10), NORM_PRIO(5)
+Typically DON'T RELY on priority factor(why ??????)
+9. public void join() throws InterruptedException
+--BLOCKING API
+--Causes the blocking of invoker thread , till specified thrd finishes exec.
+eg 
+--Imagine 2 thrds --t1 & t2
+in t1's run()
+{ ....
+t2.join(1234);
+....
+}
+
+in t2's run() {....}
+
+
+
+
+
+Blocking Triggers
+1. sleep(ms)
+2. Blocked on I/P
+eg : sc.next() / br.readLine()/System.in.read() ---data un available
+3. join()
+4. join(long ms)
+
+
+Unblocking Triggers
+1.1 sleep duration over
+1.2 interrupt
+
+2. Data available
+3.1 specified thrd over
+3.2 interrupt
+
+4.1 specified thrd over
+4.2 interrupt
+4.3 tmout elapsed
+
+
+
+Objective  --Testing concurrency
+via extends Thread
+Ensure "no orphans" via join
+ 
+eg of generating random dly in a thrd
+Thread.sleep(r1.nextInt(100)+10); //10---109

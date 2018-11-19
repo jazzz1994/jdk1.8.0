@@ -1,0 +1,159 @@
+Revise 
+What is synchronization ?
+Need 
+
+Techniques --- synchronized methods / blocks
+Any java obj can be asso with lock/monitor.
+A thrd has to acquire the lock --- iff --- invoking synched method or code from synched block.
+a thrd --blocked on monitor --- couldn't acquire the lock
+un blocking trigger --lock released or monitor free
+APIs that will release processor BUT not the lock ---- sleep,join,yield,ctx switching,notify
+
+
+
+Solve
+Create 2 Threads . Share ArrayList between 2 threads. One thread will add the elems (refs) & other thread will attach iterator(for-each) & try to retrieve elems.
+Max size =1000. 
+Observe the problem & solve.
+
+Regarding static synchronized methods
+1. Lock is applied (or monitor is associated) on the loaded class. (represented by java.lang.Class<T> , T -- type of the class)
+
+
+2. If 2 threads are accessing synchro static & synched non static method of the same class---will they block each other --NO
+eg : t1 -- u1.test() & t2 --Utils.test1()
+
+3. If 2 threads are accessing synchro static & non-synched  static method ---will they block each other  --NO
+
+4. If 2 threads are accessing 2 synchro static methods of the same class  ---will they block each other --YES
+
+
+5. If u want to apply static synchro using block , how will u do it ?
+eg : test1 --static synched, test3 ---static non -synched 
+t1 --- Utils.test1();
+t2 --- synchronized(Utils.class/Class.forName("pkgName.Utils"))
+  {
+     Utils.test3();
+  }
+
+ITC 
+
+Blocking trigger
+6. wait()
+7.wait(long ms)
+
+Un blocking triggers
+6.1 notify/notifyAll --reco
+6.2 interrupt --typically not reco.
+
+7.1 notify/notifyAll --reco
+7.2 interrupt --typically not reco.
+7.3 tmout elapsed
+
+
+
+
+
+
+
+
+
+sleep vs wait
+
+User threads vs Daemon Threads
+
+Volatile keyword.
+
+------------------------
+Enter Networking
+java.net package overview
+Layers in Networking
+Distributed applications
+
+sample URL -- http://www.server.com:7070/bank/login.html
+http --- appln layer protocol (based upon TCP/IP)
+www.server.com --DNS qualified host name/ IP adr --- resolved by IP layer.(Host) --rem IP
+7070 -- rem port (resolved  by TCP)
+/bank/login.html --- URI --web ctx path/resource
+---------------------------------------------
+Server side steps
+1. Create server side TCP socket (to be used for connection establishment) , attached to local port.
+Constructors of java.net.ServerSocket class
+1.1 ServerSocket(int localPort) throws IOException
+localPort --server side port(0---1023 , typically reserved ports. So use 1024 onwards)
+def . backlog factor=50
+
+1.2 ServerSocket(int localPort,int backlog) throws IOException
+backlog=queue depth of S.S
+(= max no of concurrent connections , that can be accepted from the clnt)
+eg : SS ss=new ServerSocket(5000,10);
+
+2. Accept the connection from client
+API of SS
+public Socket accept() throws IOException
+--Blocking API . Causes blocking of the invoker thread, till conn is established.
+If conn establishment fails (after max retries are over) --throws IOExc.
+In case of success --rets  a SEPARATE data socket instance (used ONLY for data xfer)--- to which further data strms will be attached.
+eg : Socket ds=ss.accept();
+ds -- represents Server side data socket , end point
+
+3. Attach data stream to Socket device
+Socket class API
+public InputStream getInputStream() ---bin , un-buf i/p stream (node strm) wrapping socket device -- for data read
+
+public OutputStream getOutputStream()
+
+
+
+Client side steps
+1. Establish connection with remote server.
+java.net.Socket class constr.
+1.1 Socket(String remIp,int remPort) throws UnknownHostException,ConnectException,IOException
+eg : Socket s1=new Socket(sc.next(),sc.nextInt());
+
+2. Attach data stream to Socket device
+Socket class API
+public InputStream getInputStream()
+public OutputStream getOutputStream()
+
+
+Socket programming (TCP/IP --Transport layer programming)
+Better objective
+User management distributed system
+services offered
+0. Display all users registered after specified reg date.
+1. subscribe user
+2. un subscribe user
+3. update details
+4. authenticate user.
+.......
+Server side design
+1. core class --User --email,pass,reg amt , reg date
+2. ValidationUtils -- dup email id.
+3. Custom exc --UserHandlingException
+4. IOUtils --- 
+4.1 --storeData --- write coll of users to bin file(serialization)
+4.2 --restoreData --- read coll of users from bin file(de serialization)
+...to be continued ....
+
+4.3 NetUtils ---servicing logic
+public static void service(....) {....}
+
+5. Tester
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

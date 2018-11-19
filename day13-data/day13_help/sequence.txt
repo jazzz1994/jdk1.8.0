@@ -1,0 +1,147 @@
+Revise
+
+Java 8 new features
+default, static methods
+Functional i/f
+Lambda expressions---ano function ---function literal
+Syntax
+Func i/f ref=(Type arg1,Type arg2....)->{body}
+
+Solve assignment (Converter)
+Create LinkedHashMap<Integer,String> & display entries using forEach
+Solve 
+ArrayList<String> l1=new ArrayList<>();
+Collections.addAll(l1, "a1","a6","b1","b4","a5","a10","b2");
+l1.forEach(System.out::println);
+//lambda expr
+l1.forEach(s->soprint(s+" : "));
+l1.removeIf(s->s.contains("a")).forEach(s->sop(s));//javac err
+
+Method references.
+refer to readme
+
+Enter java.util.stream -- Stream<T>
+Collection vs Stream
+Refer to readme 
+Creation of streams from Collection/Map/Arrays & some basic Stream operations
+
+--------------------------------
+Continue with Java I/O 
+Revise java.io overview
+Which 2 types ?
+Abstract super classes
+FIS/FOS/FR/FW  --- node strms ---un buf
+BIS(InputStream in)/BOS(OutputStream os)/BR(Reader r)/BW(Writer w)---buffering 
+try-with-resources (based upon java.lang.AutoCloseable)
+try(Scanner sc=new Scanner(...);
+//Emp e=new Emp(...);//sop(...);)
+{
+.....
+}catch(Exception e){....}
+
+
+Read text file contents using buffering n display the same.
+JA<-----BR<---FR<---TextFile
+sop(...);
+try(Scanner sc=new Scanner(System.in);
+BR br=new BR(new FR(fileName));)
+{
+   String s=null;
+    while((s=br.readLine()) != null)
+      sop(s);
+} catch-all
+
+
+
+
+
+Copy text file --in buffered manner.
+JA<-----BR<---FR<--- src TextFile
+JA ---> PW ---> FW --->dest text file
+sop(...);
+try(Scanner sc=new Scanner(System.in);
+BR br=new BR(new FR(fileName));
+//auto flushable n appendable buffered file strm
+PW pw=new PW(new FW(fn,true),true);)
+{
+   String s=null;
+    while((s=br.readLine()) != null)
+      pw.println(s);
+} catch-all
+
+
+Can you attach scanner to read the contents of file ? --yes
+
+Scanner vs BR
+
+Objective --- Collection & I/O
+BankAccount HAS-A KYC(customer email,address,phoneNo)
+
+Store BankAccount info(sorted as per balance) on text file(using buffered streams)
+
+Restore the same. 
+
+Enter Binary streams
+API of InputStream & OutputStream (read /write methods)
+Objective ---Accept bin file name from user.
+Read contents of bin file in byte[].
+close devices.
+eg : 
+try(FIS fin=new FIS(fileName))
+{
+   byte[] bytes=new byte[fin.available()];
+   int num=fin.read(bytes);
+}
+
+Solve !
+byte[] bytes=new byte[100];
+int num=System.in.read(bytes,10,20);
+
+What will happen , if 
+no data  --- BLOCKED 
+5 bytes available --- num=5;bytes[10]....bytes[14]
+110 bytes available --- num=20;bytes[10]----bytes[29]
+-----------------------------------
+Objective --- Write a String ---"Bin streams are interesting!!!!" 
+--into bin file .(buf)
+eg : String s="Bin streams are interesting!!!!";
+try(BOS bout=new BOS(new FOS(fileName)))
+{
+   byte[] bytes=s.getBytes();
+  bout.write(bytes);
+}
+-----------------------
+Objective --- Write emp info(HM<I,E>) on bin file in buffered manner.
+
+
+
+
+
+
+
+
+
+
+Conversion streams --Data I/O streams
+
+Most advanced streams --Object streams.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

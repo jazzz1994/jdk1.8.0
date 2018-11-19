@@ -1,0 +1,364 @@
+Day 1
+
+Revise class work , go through ready code samples.
+
+Solve 
+1. Accept 2 numbers from user using scanner. Compare 2 numbers & print comparison results. 
+
+2. Accept 2 numbers as command line arguments from user. If user supplies less than 2 arguments supply error message & terminate. . If all correct, compute avarage & display the same.(Hint : args.length)
+
+3. Redo above assignement by replacing command line arguments by user inputs via scanner. If arguments are not numbers , supply error message & terminate.
+(Hint --sc.hasNextInt for checking & sc.nextInt for reading int)
+
+4. Display food menu to user. User will select items from menu along with the quantity. (eg 1. Dosa 2. Samosa .......10 . Generate Bill ) When user enters 'Generate Bill' option, display total bill & exit.
+(Hint --switch/case)
+
+Day 2
+
+1. Solve Tank assignment along with memory picture.
+
+class Tank {
+  private int level;
+  Tank(int l)
+   {
+     level=l;
+   }
+  public void setLevel(int level1)
+  {
+    level=level1;
+  }
+  public int getLevel()
+  {
+    return level;
+  }
+}	
+
+public class Assignment {
+  public static void main(String[] args) {
+    Tank t1 = new Tank(10);
+    Tank t2 = new Tank(20);
+   
+    s.o.p("1: t1.level: " + t1.getLevel() +
+          ", t2.level: " + t2.getLevel());
+    t1 = t2;
+    s.o.p("2: t1.level: " + t1.getLevel() +
+          ", t2.level: " + t2.getLevel());
+    t1.setLevel(27);
+     s.o.p("3: t1.level: " + t1.getLevel() +
+          ", t2.level: " + t2.getLevel());
+    t2.setLevel(t1.getLevel()+10);
+     s.o.p("4: t1.level: " + t1.getLevel() +
+          ", t2.level: " + t2.getLevel());
+  }
+}
+
+2. Create java application for the following.
+Create Student class in a package "com.app.core" 
+2.1 Every student must have   --- id(int) --if possible system generated(think!!!), name (String), email(String), age(int), gpa (double)
+
+2.2 Add suitable parameterized constructor.
+2.3 Add a method fetchDetails to  fetch student details
+(ret type -- String)
+
+2.4 Write a Tester1 class in "com.tester" package , to accept 2 student details & display the same.
+
+3.  Modify Student class . Don't accept gpa in constructor , since it has to be computed.
+
+3.1  Add computeGPA method in Student class
+Accept 3 scores for quiz , test & assignments
+GPA should be computed on 20 % of quiz score, 50% of test score & 30% of assignment score.
+
+3.2 Write a Tester2 class in "com.tester" package , to accept 2 student details(w/o gpa)
+Compute GPAs by passing scores.
+Display name of student having higher GPA.
+
+Day 3
+
+0. Revise packages,arrays & simple inheritance.
+
+What will happen ?
+1. If you replace for loop in TestRefArray.java by for-each?
+2. Why System.out.println(null) --doesn't throw NullPointerException
+3. Add methods setWidth & getWidth to the Box class & solve this.
+Imagine Box[] is created & Box objects are also created by
+Box[] boxes={new Box(1,2,3),new Box(10,20,30),new Box(11,12,13)};
+for(Box b : boxes)
+ b.setWidth(b.getWidth()+5);
+for(Box b : boxes)
+ b.displayDims();
+
+Please add 4 instance methods m1,m2,m3,m4 to class A from package p1 & confirm table of access specifiers .
+
+
+
+1. Create Point class Point2D  in package "drawing.basic" : for representing a point in x-y co-ordinate system.
+
+1.1 Create a parameterized constructor to accept x & y co-ords.
+
+Add show method to Point2D class : to return  the x & y coords .(public String show())
+
+1.2 Add isEqual method to Point2D class : boolean returning method : must ret. true if both points are having same x,y co-ords or false otherwise. : 
+
+1.3 Add a method to Point2D class -- to create and return new point having given x & y offset.
+(eg Point2D createNewPoint(int xOffset,int yOffset))
+
+1.4 Add calculateDistance method to calculate distance between current point & specified point & return the distance to the caller.
+(eg double  calcDistance(Point2D p2))
+Hint : API of java.lang.Math class --pow & sqrt
+
+1.5 Write TestPoints class with a main method, in "drawing.tester" .
+
+Accept how many points to create from  user (Scanner) & create suitable array.
+
+1.6 Populate array by accepting point co ordinates.
+
+1.7 Use show method to display point details of all created points
+
+1.8 I/P from User -- 1st & 2nd point 
+eg : Enter 2 points 
+1 10
+Invoke isEqual & display if 1st point & 10th point are having same co ordinates or different
+
+1.9 I/P from User -- 1st & 2nd point 
+Display distance between 2 points.
+
+
+Day 4
+
+1. Design classes for the following requirement & add them  under the package "com.cdac.core"
+1.1 Person -- first name & last name'
+
+1.2 Student -- first name , last name ,graduation year, course name
+add introduce() method --To  Display only fName , grad year .
+add feedback() a  NEW method specific to Student--to display feedback 
+(just display a standard mesg "Feedback submitted")
+
+1.3 Faculty --first name , last name , yrs of experience, working domain
+add introduce() method --To display last name & yrs of experience 
+add a NEW method evaluate()  -- To display student evaluation.
+(just display "students evaluated")
+
+Add suitable parameterized constrs & toString(to return complete details) to all of above classes.
+
+1.4 Create EventOrganizer application (class) under "com.cdac.tester" package.
+ Allocate fixed capacity hall to org the event
+Arrange an event for all faculties & students
+Allocate Seat no whenever a person registers.
+
+Options 1 : Register Faculty.
+2 : Register Student.
+3 : Display info of all registered members. 
+4 : Introduce yourself 
+I/P Seat number O/P introduction mesg or error message (invalid seat no)
+5. :  Submit Feedback or evaluation report
+I/P -- seat no , O/P --if a student --invoke feedback() method or
+if its a faculty -- invoke evaluate() or err mesg (invalid seat no)
+10. Exit
+
+Day 5
+0. Revise entire sequence of today (important --Interfaces & implemetation classes)
+
+1. Solve ready code samples from 
+1.1 <day5_help\rdy code\covariance_demo>
+1.2 <day5_help\rdy code\test_overload>
+1.3 <day5_help\rdy code\test_override> , 1 , 2 & 3
+
+2. Add overriding form of equals method in Person class , based upon equality of first name & last name.
+Avoid duplicate registration in your tester.
+
+Day 6
+1. Revise class code samples & then solve this.
+
+2. Design & implement customer based application along with validation rules , using exception handling.
+
+2.1 Create core class Customer in  package "com.app.core"
+data members -- email(unique),password , reg amount.
+constr/s , toString , equals method.
+
+2.2 Create Custom exception class CustomerHandlingException , in package "cust_excs" 
+
+2.3 Create ValidationRules class under "util" package.
+1. email id must be between 5 to 10 chars.
+2. password must be alphanumeric & should contain special char(%,@,*,# etc) .
+3. reg amount must be in the multiples of 500.
+
+2.4 Create a tester "TestCustomer" class in "tester" package.
+Option : 
+1. Register new customer
+Accept customer details , call validation rules & supply proper error handling.
+10 : Exit
+
+Day 6
+1. Revise exception handling & solve this.
+Design & implement customer based application along with validation rules , using exception handling.
+
+2.1 Create core class Customer in  package "com.app.core"
+data members -- email(unique),password , reg amount.
+constr/s , toString , equals method(email)
+
+2.2 Create Custom exception class CustomerHandlingException , in package "cust_excs" 
+
+2.3 Create ValidationRules class under "util" package.
+1. email id must be between 5 to 10 chars.
+2. password must be alphanumeric & should contain sepcial char. (Hint : Use String class's public boolean matches(String regEx))
+3. reg amount must be in the multiples of 500.
+
+2.4 Create a tester "TestCustomer" class in "tester" package.
+Option : 
+1. Register new customer
+Accept customer details , call validation rules & supply proper error handling.
+
+Day 7
+1. Pls revise ---String handling,Date/Time handling , Wrappers & non-static nested class 
+
+2.
+Modify Day6 assignment for the following.
+2.1. Add registrationDate to Customer class (instance var)
+Add SimpleDateFormat (static var) to Customer class & init it from static init block.
+Modify constructor & toString suitably.
+2.2. Add new validation rule
+reg date must be in current financial year(no hardcoding pls!!!)
+2.3. Modify Tester to invoke new validation rule.
+
+2.4 If time permits --add 1 more validation rule to avoid duplicate registration (no dup email id --based on equals method of Customer class)
+
+
+Day 8
+1. Revise enums , need of generics , collection framework overview & ArrayList API(constrs & methods)
+
+2. Continue with Day 7 Customer class , ValidationRules & custom exception.
+2.1 Write a Tester for customer registration
+I/P --email , password , reg amount & reg date.
+O/P -- Success mesg or error message via catch block.
+(In case of no validation errs , add customer info to the suitable ArrayList)
+
+Day 9
+1. Create hardcoded AL of Customers (using CollectionUtils) in Tester .
+I/P --email & password
+O/P --Successful login or Invalid Email or Invalid Password
+
+
+Day 10
+
+1. Continue with core customer class,custom exception & utils from earlier day.
+
+Create a Tester. Get populated list of customers from CollectionUtils class.
+
+Options
+1.1 Register Customer
+I/p --email, pass,reg amount n date.
+O/p --- Customer registered successfully -- mesg.
+
+1.2. Customer login
+I/P -- email & password
+O/P -- Successful login mesg or custom exc --invalid login!!
+
+1.3. Change Password
+I/P -- email , old password , new password
+O/P -- Successful password change mesg or custom exc --invalid login!!
+
+1.4 Un subscribe customer
+I/P -- email & password
+O/P --Customer un subscribed mesg  mesg or custom exc --invalid login!!
+
+1.5 Display names of customers who have registered after specified date.
+
+
+1.6 Sort customer as per email --using natural ordering .
+
+Sort customers as per reg date --custom ordering
+
+1.7 Sort customers as per reg amount ----custom ordering
+
+1.8 Sort customers as per reg date & reg amount  --w/o touching UDT (custom ordering)
+
+Optional assignment
+Create generic Queue(FIFO) & Stack(LIFO) for storing ANY type of data. (Hint : Use LinkedList)
+
+
+Day 11
+Copy Customer class(remove equals,Comparable,compareTo & overloaded constructor) , same ValidationRules. Modify CollectionUtils to return suitable map.
+
+Write a Tester to Solve Day 10 objectives using Map API
+(Hint --HashMap/TreeMap or Collection view of a map)
+
+Day 12
+1. Read about "type erasure in generics" from today's sequence.
+Keep jad(java application de-compiler) extracted & ready.
+
+2. Revise Lambda expressions
+Revise examples of higher order functions
+--forEach(of Collection i/f), forEach(of Map i/f), removeIf(of Collection i/f), Collections.sort(List<T>,Comparator<? super T> c)
+
+3. Optional assignment on lambda
+
+Convert from ANY src type to ANY dest type
+
+3.1 Create a Functional i/f (Hint --generic i/f)
+eg : Converter<F,T>
+
+3.2 Write your own higher order function 
+i/p -- F
+converison action
+o/p --T 
+
+3.3 Test it using Tester
+eg : String ---> length
+String ----> upper case string
+celcius ---> fahrenheit (formula -- f=c*1.8+32)
+Student ---> GPA
+number ---> square root
+Customer ---> reg date (any 2-3 will suffice!)
+
+Day 13
+1. Create Java application to write customer information in bin file in buffered manner (Use lambda expressions wherever possible!)
+1.1 Continue with earlier Customer class.
+1.2 Create CollectionUtils to return populated map of customers.
+1.3 Add a method in CollectionUtils to sort customers as per reg date.
+
+1.4 Write BinIOUtils class to add 2 methods
+1.4.1 Store Info
+Hint -- Chain of streams --JA -->DOS--->BOS-->FOS -->Bin File
+Methods of DOS --writeInt,writeDouble ,writeUTF
+1.4.2 Restore Info
+Hint -- Chain of streams --JA -->DIS--->BIS-->FIS -->Bin File
+Methods of DIS --readInt,readDouble ,readUTF....
+1.5 Write 2 Testers --one to store info & other to restore info.
+
+Day14
+
+Create Java application for CRUD + persistence using serialization & de-serialization
+1. Continue with the same Customer class.
+2. Add HAS-A (aggregation) relationship between Customer & MailingAddress
+Create MailingAddress as a separate class --city,state,country,zipCode.
+Add suitable constr & toString
+3.Add suitable method in Customer to set its mailing address.
+4. In addition to ValidationUtils & CollectionUtils , add IOUtils
+4.1 Store customer info into bin file using serialization
+4.2 Restore customer info from bin file using de-serialization.
+
+5. In Tester --
+Restore existing customer info.
+Offer CRUD options to customer.
+In exit option --store customer info & then terminate JVM.
+
+
+Day 15
+0. MUST complete Day 14 (serialization based assignment)
+
+1. Create OddNoPrinter & EvenNoPrinter thread classes.(
+Task -- print odd /even numbers with RANDOM DELAY)
+
+Display even nos & odd nos via 2 separate thrds .
+
+main thrd should accept start value ,end  value  from user.
+
+Initially do this using "extends Thread" & later with "implements Runnable" scenarion.
+
+ 
+
+
+
+
+
+

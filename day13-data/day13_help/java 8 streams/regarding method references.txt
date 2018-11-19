@@ -1,0 +1,50 @@
+Regarding method references
+
+Instead of using 
+AN ANONYMOUS CLASS
+you can use
+A LAMBDA EXPRESSION
+And if this just calls one method(with same arguments as lambda args), you can use A METHOD REFERENCE
+
+A method reference is the shorthand syntax for a lambda expression that executes just ONE method. 
+
+General syntax of a method reference:
+
+Class/Object :: methodName
+
+eg : if the lambda expression is really just a call to some method, for example:
+
+List<String> l1=Arrays.asList("aa","bb","cc");
+l1.forEach(s -> System.out.println(s));
+
+Then , 
+To make the code clearer, replace it by method reference:
+
+l1.forEach(System.out::println);
+
+In a method reference, you place the object (or class) that contains the method before the :: operator and the name of the method after it without arguments.
+
+
+
+ref : meth_ref
+
+There are four types of method references:
+
+1. A method reference to a static method.
+Syntax :  Class::staticMethod	
+eg : Lambda expression s -> String.valueOf(s)
+Method Ref :  String::valueOf
+Usage : l1.forEach(String::valueOf);
+
+
+2. A method reference to an instance method of an object of a particular type.
+Syntax : Object::method
+eg : l1.forEach(s->System.out.println(s));
+OR
+l1.forEach(System.out::println)
+
+3. A method reference to an instance method of an existing object.
+eg : Test2.java
+
+4.A method reference to a constructor.
+eg : Test4.java

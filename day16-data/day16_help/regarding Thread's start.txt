@@ -1,0 +1,8 @@
+What happens when you call start on NEW Thread ?
+
+It internally invokes a native method start0()
+
+Its  invocation will --
+
+1. cause a new native thread-of-execution to be created
+2. cause the run method to be invoked on that thread.

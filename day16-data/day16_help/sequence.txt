@@ -1,0 +1,180 @@
+Assignment status
+
+Revise
+Thread state transitions (via Thread.getState & Thread.State Enum)
+
+Thread related API
+
+Ways of creating threads  --
+
+currentThread , getName, toString ,setPriority,yield,sleep,interrupt
+
+Blocking Triggers 
+
+1. Blocked on sleep
+2. Blocked on i/p
+3. Blocked on join
+
+NOTE : Only the threads which are blocked on sleep/wait/join --can be unblocked on interrupt signal (via InterruptedException)
+Threads blocked on i/p or blocked on monitor  --CAN'T be un blocked via interrupt signal.
+
+
+1. Solve -- 
+t1's run() { 
+ try {
+  t2.join(1234);.....
+ } catch(Exception e) {...}
+}
+
+Which possible un blocking triggers ?
+
+2. Solve objective of Threads & I/O & Collection.
+
+Create  Emp based organization having multiple depts(3). Individual dept is going to be managed by a separate thrd. Dept has its own collection of employees set/map/list)
+Write dept wise emp info in 3 separate files.(buffered text files . Hint : PrintWriter), with random delay(for forcing context switiching)
+Clean up(close) I/O resources after all thrds have finished writing info.
+No orphans pls!
+
+Emp dummy data
+
+RND dept data
+{new Emp(1, "abc1","rnd", 11000),new Emp(2, "abc2","rnd", 12000),new Emp(3, "abc3","rnd", 13000)}
+
+HR dept data
+{new Emp(4, "abc4","hr", 14000),new Emp(5, "abc5","hr", 15000),new Emp(6, "abc6","hr", 16000)}
+
+Sales dept data
+{new Emp(7, "abc7","sales", 17000),new Emp(8, "abc5","sales", 18000),new Emp(9, "abc6","sales", 19000)}
+
+		
+
+Detailed Design 
+
+2.1 Create Emp class with --id,name,salary,deptId(string)
+Add constructor & toString
+2.2 Create CollectionUtils class
+Add static method/s to return populated List of Emps.
+eg : public static List<Emp> populateData() {...}
+
+2.3 Create IOUtils class --for writing dept information to text file in buffered manner.
+2.3.1 Data member --private PrintWriter pw
+2.3.2 Add a constructor to create PW with user supplied file name.
+2.3.3 Add instance method(non static) to write data to text file.
+eg : public void writeData(List<Emp> list) throws Exception
+Different emp records should be written on separate lines.
+
+2.3.4 Add instance method(non static) , to close PW
+public void cleanUp(){...}
+
+3. Create DeptHandler task --implementing Runnable
+3.1 Add suitable constr
+3.3 Implement run() --for writing dept data to data file(invoke IOUtils' method)
+
+4. Create Tester --main based
+4.1 Get List<Emp> from CollectionUtils
+4.2 Create IOUtils instances (accepting file name from scanner)
+4.4 Create threads by attaching DepthHandler Task & start the same.
+4.5 main thrd should wait for child thrds to finish execution.
+4.6 Clean up I/O resouces
+4.7 Terminate.
+
+
+Need of synchronization
+
+In multi threaded scenario -- when multiple thrds are sharing SAME resource(file/collection/db table .....) ---some threads are reading from the resource & other thrds may be writing / updating the resource. OR multiple thrds are updating the same resources concurrently.
+
+Multiple threads are racing to access shared resource.
+
+Such a code section --criticle section.
+
+So to avoid racing condition(or to guard criticle section) use synchronization technique.
+
+synchronization= Applying thread safety.
+
+Observe problem via Simple eg -- Printer , PrintableTask & Tester
+1 . PrintUtils  ---Add instance method(printMessage) which accepts a message(i/p)
+Splits it using a delimiter & displays it on console with some intermediate sleep(to force ctx switching)
+
+2. Create a PrintableTask (implements Runnable) 
+--Add indefinite loop(while true) in its run method --to invoke  PrintUtils's , printMessage method.
+
+3 Create a main based Tester . Create 1 copy(instance) of PrintUtils . Create 2 Threads(t1 & t2) & SHARE the SAME COPY of PrintUtils between t1 & t2.
+Send 2 different mesgs to 2 threads. & start them.
+Main thread should wait for user i/p.
+After a key stroke , stop the threads (how ?????) . Wait for child thrds to finish execution. Main over....
+
+
+-------------------
+synchronized --- keyword in java
+Can be applied as method modifier or at block level(synchronized methods or synchronized blocks)
+Meant for applying thread safety.
+
+In java , every object / class can be associated with the monitor (=lock)
+
+Any thread has to acquire the lock(=enter the monitor) iff
+---its calling synched method 
+OR
+code from synched block.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NOTE --Threads which invoke sleep/yield/join/notify/or undergo ctx switching --DON'T release ownership of the lock.(only release the processor)
+
+
+synchronization techniques -- methods & blocks
+synchronized blocks 
+why
+1. Can effectively narrow down extent of the lock.
+(i.e u identify critical section & surround it within synced block).
+
+2. In case of using any inherent thrd un safe API(eg : StringBuilder,HashMap,HashSet,LinkedList....) , u can still provide thrd safety externally.
+
+syntax
+synchronized(instance of the shared resource to lock)
+{.....}
+eg :
+synchronized (hm) 
+{ hm.put(k,v)}
+
+other thread can read HM data, from within synched block
+eg : synchronized (hm) 
+{ //access collection of values via iterator}
+
+Blocking Trigger
+5. Blocked on a monitor(=unable to acquire a lock on shared resource) --- triggers --synched method / block
+
+
+
+
+Un blocking trigger
+5. Lock released(=monitor being free) --- thrd rets from synched method/block or invokes wait.
+
+
+-----------------------
+Inter Thread communication
+Refer to code sample of "no_itc"
+
+
+
